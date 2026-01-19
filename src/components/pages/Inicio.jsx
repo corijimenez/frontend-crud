@@ -1,7 +1,8 @@
 import { Row } from "react-bootstrap";
 import CardServicio from "../services/CardServicio";
+
 import { useEffect, useState } from "react";
-// import { listarServiciosApi } from "../../helpers/queries";
+import { listarServiciosApi } from "../../helpers/queries";
 
 const Inicio = () => {
   const [servicios, setServicios] = useState([]);
@@ -12,12 +13,13 @@ const Inicio = () => {
 
   const cargarServicios = async () => {
     const respuestaServicios = await listarServiciosApi();
+
     if (respuestaServicios && respuestaServicios.status === 200) {
-      const datos = await respuestaServicios.json();
+      const datos = await respuestaServicios.json(); //extrae los datos del body
       setServicios(datos);
     } else {
       alert(
-        "Ocurrio un error no se puede mostrar los productos en este momento"
+        "Ocurrio un error no se puede mostrar los productos en este momento",
       );
     }
   };
