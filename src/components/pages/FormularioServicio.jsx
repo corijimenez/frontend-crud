@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-// import { buscarServicioApi, crearServicioApi, editarServicioApi } from "../../helpers/queries";
 
 const FormularioServicio = ({ titulo }) => {
   const {
@@ -39,11 +38,11 @@ const FormularioServicio = ({ titulo }) => {
     }
   };
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data) => { // agrego el async por cada await
     console.log(data);
     if (titulo === "Crear servicio") {
       //agrego la logica de crear
-      const respuestaServicioCreado = await crearServicioApi(data);
+      const respuestaServicioCreado = await crearServicioApi(data); //llamo a la api para crear el servicio. idem como la funcion listar
       if (respuestaServicioCreado && respuestaServicioCreado.status === 201) {
         Swal.fire({
           title: "Servicio creado",
@@ -60,7 +59,7 @@ const FormularioServicio = ({ titulo }) => {
       }
     } else {
       //agregar la logica para editar
-      const respuestaEditarServicio = await editarServicioApi(data, id)
+      const respuestaEditarServicio = await editarServicioApi(data, id) //lamo a la api para editar el servicio
       if(respuestaEditarServicio && respuestaEditarServicio.status === 200){
         Swal.fire({
           title: "Servicio editado",
@@ -70,7 +69,7 @@ const FormularioServicio = ({ titulo }) => {
         navegacion("/administrador");
       }else{
          Swal.fire({
-          title: "Ocurrio un error",
+          title: "Ocurrio un error al mostrar el servicio",
           text: `El servicio '${data.servicio}' no pudo ser editado. Intenta nuevamente en unos minutos`,
           icon: "error",
         });
