@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
-// import { borrarServicioApi } from "../../helpers/queries";
+import { borrarServicioApi } from "../../helpers/queries";
 
 const ItemTabla = ({ servicio, fila, servicios, setServicios }) => {
   const eliminarServicio = () => {
@@ -17,7 +17,8 @@ const ItemTabla = ({ servicio, fila, servicios, setServicios }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // borrarServicio(servicio.id);
-        const respuestaBorrarServicio = await borrarServicioApi(servicio._id);
+        const respuestaBorrarServicio = await borrarServicioApi(servicio._id); //llamo a la api para borrar el servicio
+        
         if (respuestaBorrarServicio && respuestaBorrarServicio.status === 200) {
           Swal.fire({
             title: "Servicio eliminado",
