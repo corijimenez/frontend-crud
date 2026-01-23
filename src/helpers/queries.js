@@ -36,3 +36,12 @@ export const borrarServiciosApi = async(servicio) => {
         console.error(error)
     }
 }
+
+export const buscarServiciosApi = async(id) => {
+    try{
+        const respuesta = await fetch(urlServicios + `/${id}`)
+        return respuesta 
+    }catch(error){
+        console.error(error)
+    }
+}

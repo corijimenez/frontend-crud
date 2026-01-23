@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
+import { buscarServicioApi, crearServicioApi } from "../../helpers/queries";
 
 const FormularioServicio = ({ titulo }) => {
   const {
@@ -17,16 +18,18 @@ const FormularioServicio = ({ titulo }) => {
   const navegacion = useNavigate();
 
   useEffect(() => {
+    
     cargarDatos();
   }, []);
 
+  // en el use effect no se puede usar async await directamente por eso creo esta funcion aparte
   const cargarDatos = async () => {
     // si estoy editando entonces busco el objeto para dibujar en el formulario
     if (titulo === "Editar servicio") {
       // const servicioBuscado = buscarServicio(id);
       const respuestaServicio = await buscarServicioApi(id);
       if (respuestaServicio && respuestaServicio.status === 200) {
-        const servicioBuscado = await respuestaServicio.json();
+        const servicioBuscado = await respuestaServicio.json(); //extrae los datos del body
 
         setValue("servicio", servicioBuscado.servicio);
         setValue("precio", servicioBuscado.precio);
