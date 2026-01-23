@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-import { buscarServicioApi, crearServicioApi } from "../../helpers/queries";
+import { buscarServicioApi, crearServicioApi, editarServicioApi } from "../../helpers/queries";
 
 const FormularioServicio = ({ titulo }) => {
   const {
@@ -61,7 +61,6 @@ const FormularioServicio = ({ titulo }) => {
         });
       }
     } else {
-      //agregar la logica para editar
       const respuestaEditarServicio = await editarServicioApi(data, id) //lamo a la api para editar el servicio
       if(respuestaEditarServicio && respuestaEditarServicio.status === 200){
         Swal.fire({
