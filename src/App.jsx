@@ -12,7 +12,7 @@ import ProtectorRutas from "./components/routes/ProtectorRutas";
 
 function App() {
   const usuarioSessionStorage =
-    JSON.parse(sessionStorage.getItem("usuarioKey")) || false;
+    JSON.parse(sessionStorage.getItem("usuarioKey")) || {};
   const [usuarioLogueado, setUsuarioLogueado] = useState(usuarioSessionStorage);
   const serviciosLocalStorage = JSON.parse(localStorage.getItem('serviciosKey')) || []
   const [servicios, setServicios] = useState(serviciosLocalStorage)

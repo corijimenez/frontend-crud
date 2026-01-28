@@ -2,6 +2,7 @@
 
 //funciones que hacen las cosnultas al backend
 const urlServicios = import.meta.env.VITE_SERVICIO;
+const urlUsuarios = import.meta.env.VITE_USUARIO;
 
 export const listarServiciosApi = async() => {
     try{
@@ -53,6 +54,19 @@ export const editarServicioApi = async(servicio, id) => {
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(servicio)
         })  
+        return respuesta 
+    }catch(error){
+        console.error(error)
+    }
+}
+
+export const login = async(usuario) => {
+    try{
+        const respuesta = await fetch(urlUsuarios + '/login',{
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(usuario)
+        }) // espera la respuesta del fetch 
         return respuesta 
     }catch(error){
         console.error(error)
