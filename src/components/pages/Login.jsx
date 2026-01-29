@@ -30,7 +30,9 @@ const Login = ({setUsuarioLogueado}) => {
             icon: "success",
             //redireccionaria a la papgina del administrador
         });
-    }else {
+         navegacion('/administrador')
+    }
+    else {
       Swal.fire({
         title: "Ocurrio un error",
         text: "Credenciales incorrectas",
