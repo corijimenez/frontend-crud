@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router";
 const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
   const navegacion = useNavigate();
   const logout = () => {
-    setUsuarioLogueado(false);
+    setUsuarioLogueado({});
     navegacion("/");
   };
 
@@ -22,7 +22,7 @@ const Menu = ({ usuarioLogueado, setUsuarioLogueado }) => {
             <NavLink className="nav-link" to={"/"}>
               Inicio
             </NavLink>
-            {usuarioLogueado ? (
+            {usuarioLogueado.nombre ? (
               <>
                 <NavLink className="nav-link" to={"/administrador"}>
                   Administrador
