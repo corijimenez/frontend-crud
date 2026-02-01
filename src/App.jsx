@@ -37,7 +37,7 @@ function App() {
           path="/login"
           element={<Login setUsuarioLogueado={setUsuarioLogueado}></Login>}
         />
-        <Route path="/detalle" element={<DetalleServicio></DetalleServicio>} />
+        <Route path="/detalle/:id" element={<DetalleServicio></DetalleServicio>} />
         <Route
           path="/administrador"
           element={
