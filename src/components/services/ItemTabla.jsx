@@ -17,8 +17,7 @@ const ItemTabla = ({ servicio, fila, servicios, setServicios }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // borrarServicio(servicio.id);
-        const respuestaBorrarServicio = await borrarServicioApi(servicio._id); //llamo a la api para borrar el servicio
-        
+        const respuestaBorrarServicio = await borrarServicioApi(servicio._id);
         if (respuestaBorrarServicio && respuestaBorrarServicio.status === 200) {
           Swal.fire({
             title: "Servicio eliminado",

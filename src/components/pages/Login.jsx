@@ -25,14 +25,13 @@ const Login = ({setUsuarioLogueado}) => {
       })
       //mostrar un cartel de bienvenido
         Swal.fire({
-            title: `Bienvienido ${usuarioLogueado.nombre}`,
+            title: `Bienvienido ${usuarioLogueado.nombre}` ,
             text: "Ingresando al sistema",
             icon: "success",
             //redireccionaria a la papgina del administrador
         });
-         navegacion('/administrador')
-    }
-    else {
+        navegacion('/administrador')
+    }else{
       Swal.fire({
         title: "Ocurrio un error",
         text: "Credenciales incorrectas",

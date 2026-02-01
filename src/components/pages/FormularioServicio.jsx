@@ -18,18 +18,16 @@ const FormularioServicio = ({ titulo }) => {
   const navegacion = useNavigate();
 
   useEffect(() => {
-    
     cargarDatos();
   }, []);
 
-  // en el use effect no se puede usar async await directamente por eso creo esta funcion aparte
   const cargarDatos = async () => {
     // si estoy editando entonces busco el objeto para dibujar en el formulario
     if (titulo === "Editar servicio") {
       // const servicioBuscado = buscarServicio(id);
       const respuestaServicio = await buscarServicioApi(id);
       if (respuestaServicio && respuestaServicio.status === 200) {
-        const servicioBuscado = await respuestaServicio.json(); //extrae los datos del body
+        const servicioBuscado = await respuestaServicio.json();
 
         setValue("servicio", servicioBuscado.servicio);
         setValue("precio", servicioBuscado.precio);
@@ -41,11 +39,11 @@ const FormularioServicio = ({ titulo }) => {
     }
   };
 
-  const onSubmit = async (data) => { // agrego el async por cada await
+  const onSubmit = async (data) => {
     console.log(data);
     if (titulo === "Crear servicio") {
       //agrego la logica de crear
-      const respuestaServicioCreado = await crearServicioApi(data); //llamo a la api para crear el servicio. idem como la funcion listar
+      const respuestaServicioCreado = await crearServicioApi(data);
       if (respuestaServicioCreado && respuestaServicioCreado.status === 201) {
         Swal.fire({
           title: "Servicio creado",
@@ -61,7 +59,8 @@ const FormularioServicio = ({ titulo }) => {
         });
       }
     } else {
-      const respuestaEditarServicio = await editarServicioApi(data, id) //lamo a la api para editar el servicio
+      //agregar la logica para editar
+      const respuestaEditarServicio = await editarServicioApi(data, id)
       if(respuestaEditarServicio && respuestaEditarServicio.status === 200){
         Swal.fire({
           title: "Servicio editado",
@@ -71,7 +70,7 @@ const FormularioServicio = ({ titulo }) => {
         navegacion("/administrador");
       }else{
          Swal.fire({
-          title: "Ocurrio un error al mostrar el servicio",
+          title: "Ocurrio un error",
           text: `El servicio '${data.servicio}' no pudo ser editado. Intenta nuevamente en unos minutos`,
           icon: "error",
         });

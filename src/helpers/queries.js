@@ -11,7 +11,7 @@ export const listarServiciosApi = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 export const crearServicioApi = async (servicio) => {
   try {
@@ -19,7 +19,7 @@ export const crearServicioApi = async (servicio) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
+        "Authorization": `Bearer ${JSON.parse(sessionStorage.getItem('usuarioKey')).token}`,
       },
       body: JSON.stringify(servicio),
     }); // espera la respuesta del fetch
@@ -27,30 +27,30 @@ export const crearServicioApi = async (servicio) => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-export const borrarServicioApi = async (servicio) => {
-  try {
-    const respuesta = await fetch(urlServicios + `/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
-      },
-    }); // espera la respuesta del fetch
-    return respuesta;
-  } catch (error) {
-    console.error(error);
-  }
-};
+export const borrarServicioApi = async(id) =>{
+    try {
+        const respuesta = await fetch(urlServicios+`/${id}`,{
+            method: 'DELETE', 
+             headers: {
+                 'Authorization': `Bearer ${JSON.parse(sessionStorage.getItem('usuarioKey')).token}`
+             }       
+        })
+        return respuesta
+    } catch (error) {
+        console.error(error)
+    }
+}
 
-export const buscarServicioApi = async (id) => {
-  try {
-    const respuesta = await fetch(urlServicios + `/${id}`);
-    return respuesta;
-  } catch (error) {
-    console.error(error);
-  }
-};
+export const buscarServicioApi = async(id) =>{
+    try {
+        const respuesta = await fetch(urlServicios+ `/${id}`)
+        return respuesta
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 export const editarServicioApi = async (servicio, id) => {
   try {
@@ -58,7 +58,7 @@ export const editarServicioApi = async (servicio, id) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
+       "Authorization": `Bearer ${JSON.parse(sessionStorage.getItem("usuarioKey")).token}`,
       },
       body: JSON.stringify(servicio),
     });
@@ -66,7 +66,7 @@ export const editarServicioApi = async (servicio, id) => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
 export const login = async(usuario) =>{
     try {
@@ -81,4 +81,4 @@ export const login = async(usuario) =>{
     } catch (error) {
         console.error(error)
     }
-};
+}

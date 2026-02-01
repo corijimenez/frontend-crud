@@ -4,22 +4,21 @@ import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import { listarServiciosApi } from "../../helpers/queries";
 
-
 const Administrador = () => {
-  const [servicios, setServicios] = useState([]) //aqui se alojara lo que me llegue desde la api
-  
+  const [servicios, setServicios] = useState([]);
+
   useEffect(() => {
     cargarServicios();
   }, []);
 
   const cargarServicios = async() => {
-    const respuestaServicios =await listarServiciosApi()
+    const respuestaServicios = await listarServiciosApi();
     console.log(respuestaServicios);
     if(respuestaServicios && respuestaServicios.status === 200){
-      const datos = await respuestaServicios.json();//extrae los datos del body 
-      setServicios(datos);
+      const datos = await respuestaServicios.json();
+      setServicios(datos)
     }else{
-      alert("Ocurrio un error no se puede mostrar los productos en este momento")
+      alert('Ocurrio un error no se puede mostrar los productos en este momento')
     }
   };
 
@@ -43,9 +42,11 @@ const Administrador = () => {
         <tbody>
           {servicios.map((servicio, indice) => (
             <ItemTabla
-              key={servicio._id} //cambio el id por _id que es como mongo lo maneja
+              key={servicio._id}
               servicio={servicio}
               fila={indice + 1}
+              servicios={servicios}
+              setServicios={setServicios}
             ></ItemTabla>
           ))}
         </tbody>
