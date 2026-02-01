@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router";
 import { Card, Badge, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { buscarServicioApi } from "../../helpers/queries";
-import { useEffect, useState } from "react";
 
 const DetalleServicio = () => {
     // id pasado en el path. id es un objeto que devuelve useParams
